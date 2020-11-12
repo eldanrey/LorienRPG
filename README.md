@@ -1,2 +1,2 @@
 # LorienRPG
- A Text Based RPG for c++
+ A text based RPG for c++
