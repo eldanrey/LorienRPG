@@ -11,6 +11,7 @@ Date Created:12/11/20 11:06
 using namespace std;
 ifstream inFile;
 ofstream outFile;
+fstream inOutFile;
 void menu(string);
 
 
@@ -18,18 +19,9 @@ void menu(string);
 void heal(){
 	
 }
-void huntMonsters(){
-	string s,user,pass;
-	int mattack,level,xp,coins,attack,defense,life;
-	inFile.open("user.dat");
-	while(getline(inFile,s)){
-		stringstream ss(s);
-		ss>>user>>pass>>level>>xp>>coins>>attack>>defense>>life;
-	}
-	default_random_engine rd(time(0));
-	mattack=(rd()%35)+25;
-	
+void huntMonsters(string username){
 
+	
 }
 void shop(){
 	
@@ -38,11 +30,12 @@ void shop(){
 
 void update(string user){
 	string s,username,password;
+	char ch;
 	int level,xp,coins,attack,defense,life;
 	inFile.open("user.dat");
 	while(getline(inFile,s)){
 		stringstream ss(s);
-		ss>>username>>password>>level>>xp>>coins>>attack>>defense>>life;
+		ss>>username>>ch>>password>>ch>>level>>ch>>xp>>ch>>coins>>ch>>attack>>ch>>defense>>ch>>life;
 		if(username==user){
 		
 			cout<<"User: "<<username;
@@ -63,7 +56,7 @@ void menu(string user){
 	cin>>choice;
 	switch(choice){
 		case '1':{
-			huntMonsters();
+			huntMonsters(user);
 			break;
 		}
 		case '2':{
@@ -87,6 +80,7 @@ void menu(string user){
 string login(){
 	login:
 	bool isLogin=false;
+	char ch;
 	string username, password,user,pass,s;
 	inFile.open("user.dat");
 	cout<<"Username: ";
@@ -96,7 +90,7 @@ string login(){
 	system("cls");
 	while(getline(inFile,s)){
 		stringstream ss(s);
-		ss>>user>>pass;
+		ss>>user>>ch>>pass;
 		if(username==user && password==pass){inFile.close();
 		menu(username);isLogin=true;
 	}
@@ -122,10 +116,10 @@ void signup(){
 	
 	cout<<"Please Enter your username: ";
 	cin>>username;
-	outFile.open(username".dat",ios::app);
+	outFile.open("user.dat",ios::app);
 	cout<<"Please Enter your password: ";
 	cin>>pass;
-	inFile.open(username".dat");
+	inFile.open("user.dat");
 	while(getline(inFile,s)){
 		stringstream ss(s);
 		ss>>useduser;
@@ -135,7 +129,7 @@ void signup(){
 		system("cls");
 		goto signup;
 	}
-	else outFile<<username<<" "<<pass<<" "<<level<<" "<<xp<<" "<<coins<<" "<<attack<<" "<<defense<<" "<<life;
+	else outFile<<username<<" , "<<pass<<" , "<<level<<" , "<<xp<<" , "<<coins<<" , "<<attack<<" , "<<defense<<" , "<<life;
 	outFile.close();
 }
 //******************************************************************************************************
